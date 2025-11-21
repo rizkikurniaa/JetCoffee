@@ -34,6 +34,7 @@ import id.bytezilla.jetcoffee.model.dummyBestSellerMenu
 import id.bytezilla.jetcoffee.model.dummyCategory
 import id.bytezilla.jetcoffee.model.dummyMenu
 import id.bytezilla.jetcoffee.ui.components.CategoryItem
+import id.bytezilla.jetcoffee.ui.components.HomeSection
 import id.bytezilla.jetcoffee.ui.components.MenuItem
 import id.bytezilla.jetcoffee.ui.components.Search
 import id.bytezilla.jetcoffee.ui.components.SectionText
@@ -60,12 +61,18 @@ fun JetCoffeeApp() {
     ) {
         Column (modifier = Modifier.verticalScroll(rememberScrollState())){
             Banner()
-            SectionText(stringResource(R.string.section_category))
-            CategoryRow()
-            SectionText(stringResource(R.string.section_favorite_menu))
-            MenuRow(dummyMenu)
-            SectionText(stringResource(R.string.section_best_seller_menu))
-            MenuRow(dummyBestSellerMenu)
+            HomeSection(
+                title = stringResource(R.string.section_category),
+                content = { CategoryRow() }
+            )
+            HomeSection(
+                title = stringResource(R.string.menu_favorite),
+                content = { MenuRow(dummyMenu)}
+            )
+            HomeSection(
+                title = stringResource(R.string.section_best_seller_menu),
+                content = { MenuRow(dummyBestSellerMenu)}
+            )
         }
     }
 }
